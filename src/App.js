@@ -2,6 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import ListBooks from './ListBooks.js'
+import SearchBook from './SearchBook.js'
 
 
 
@@ -10,7 +11,8 @@ import ListBooks from './ListBooks.js'
   
   class BooksApp extends React.Component {
     state= {
-        books : []
+        books : [],
+        screen : 'list' //list,search
     }
 
     componentDidMount() {
@@ -30,10 +32,18 @@ import ListBooks from './ListBooks.js'
     render () {
         return (
             <div>
+                {this.state.screen === 'list' && (
                 <ListBooks 
                     onUpdateShelf = {this.updateShelf}
                     books = {this.state.books}
+                    onNavigate = {() => {
+                        this.setState({screen: 'search'})
+                    }}
                 />
+                )}
+                {this.state.screen === 'search' && (
+                <SearchBook/>
+                )}
             </div>
         )
     }

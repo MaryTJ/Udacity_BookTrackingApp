@@ -12,7 +12,15 @@ class ListBooks extends Component {
 				{book.authors}
 			</li>
 			*/
+			
+			/*https://reactjs.org/docs/forms.html*/
 			<div className="bookshelf" key={book.id}>
+				<a
+					href='#search'
+					onClick = {this.props.onNavigate}
+					className = 'search-contact'
+				>	Search Contact
+				</a>
                 <h2 className="bookshelf-title">{book.shelf}</h2>
                   <div className="bookshelf-books" >
                     <ol className="books-grid">             
@@ -21,8 +29,7 @@ class ListBooks extends Component {
 			                    <div className="book-top">
 			                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
 			                        <div className="book-shelf-changer">
-			                        	/*https://reactjs.org/docs/forms.html*/
-			                            <select className= "select-book" value= {book.shelf} onChange={event=>this.props.onUpdateShelf(book,event.target.value)}>
+			                        	<select className= "select-book" value= {book.shelf} onChange={event=>this.props.onUpdateShelf(book,event.target.value)}>
 			                                <option value="move" disabled>Move to...</option>
 			                                <option value="currentlyReading">Currently Reading</option>
 			                                <option value="wantToRead">Want to Read</option>
