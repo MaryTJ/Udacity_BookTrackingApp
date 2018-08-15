@@ -10,17 +10,7 @@ import ListBooks from './ListBooks.js'
   
   class BooksApp extends React.Component {
     state= {
-        books : []/*
-        {"id": "1",
-        "title" : "mocking-bird",
-        "author": "LEE"
-        },
-        {
-          "id": "2",
-        "title" : "harrypotter",
-        "author": "jkrowling"  
-        }*/
-    
+        books : []
     }
 
     componentDidMount() {
@@ -28,16 +18,25 @@ import ListBooks from './ListBooks.js'
             this.setState({books})
         })
     }
+
+    updateShelf = (book,shelf) => {
+        
+        BooksAPI.update(book,shelf)
+        BooksAPI.getAll().then((books) => {
+            this.setState({books})
+        })
+    }
+
     render () {
         return (
             <div>
-                <ListBooks books ={this.state.books}/>
+                <ListBooks 
+                    onUpdateShelf = {this.updateShelf}
+                    books = {this.state.books}
+                />
             </div>
         )
     }
   }
-
-
-
 
 export default BooksApp
