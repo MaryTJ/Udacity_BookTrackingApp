@@ -1,9 +1,19 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 class ListBooks extends Component {
 	render() {
 	console.log(this.props.books)
 	return (
+		<div className="list-books">
+            <div className="list-books-title">
+              <h1>MyReads</h1>
+            </div>
+            <Link
+				to='/search'
+				className = 'search-contact'
+				>	Search Contact
+			</Link>
 		<ol className='booksList'>
 			{this.props.books.map((book)=>
 			/*
@@ -15,12 +25,7 @@ class ListBooks extends Component {
 			
 			/*https://reactjs.org/docs/forms.html*/
 			<div className="bookshelf" key={book.id}>
-				<a
-					href='#search'
-					onClick = {this.props.onNavigate}
-					className = 'search-contact'
-				>	Search Contact
-				</a>
+				
                 <h2 className="bookshelf-title">{book.shelf}</h2>
                   <div className="bookshelf-books" >
                     <ol className="books-grid">             
@@ -47,6 +52,7 @@ class ListBooks extends Component {
 			</div>
 			)}
 		</ol>
+		</div>
 		)}
 }
 
