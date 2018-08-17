@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
+
 
 class ListBooks extends Component {
+	static propTypes = {
+		books: PropTypes.array.isRequired,
+		onUpdateShelf: PropTypes.func.isRequired
+	}
+
 	render() {
-	console.log(this.props.books)
+	
 	return (
 		<div className="list-books">
             <div className="list-books-title">
@@ -16,12 +24,7 @@ class ListBooks extends Component {
 			</Link>
 		<ol className='booksList'>
 			{this.props.books.map((book)=>
-			/*
-			<li key={book.id}>
-				{book.title}
-				{book.authors}
-			</li>
-			*/
+			
 			
 			/*https://reactjs.org/docs/forms.html*/
 			<div className="bookshelf" key={book.id}>
@@ -32,7 +35,7 @@ class ListBooks extends Component {
 						<li>
 			             	<div className="book">
 			                    <div className="book-top">
-			                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
+			                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail}  ? {book.imageLinks.smallThumbnail} : '')`  }}></div>
 			                        <div className="book-shelf-changer">
 			                        	<select className= "select-book" value= {book.shelf} onChange={event=>this.props.onUpdateShelf(book,event.target.value)}>
 			                                <option value="move" disabled>Move to...</option>
@@ -56,25 +59,6 @@ class ListBooks extends Component {
 		)}
 }
 
-/*
-class ListBooks extends Component {
-	render () {
-		console.log('Props',this.props)
-		return (
-			<ol className='booksList'>
-			{this.props.books.map((book)=>
 
-			<li key={book.id}>
-				{book.title}
-			</li>	
-			)
 
-			}
-			</ol>
-			)
-
-	}
-
-}
-*/
 export default ListBooks

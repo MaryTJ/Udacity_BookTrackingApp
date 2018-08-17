@@ -5,11 +5,11 @@ import ListBooks from './ListBooks.js'
 import SearchBook from './SearchBook.js'
 import { Route } from 'react-router-dom'
 
-
   
   class BooksApp extends React.Component {
     state= {
-        books : []//,
+        books : [],
+        searchedBooks : []
         //screen : 'list' //list,search
     }
 
@@ -27,7 +27,34 @@ import { Route } from 'react-router-dom'
         })
     }
 
+    searchShowBooks = (query) => {
+
+        if (!query || (query === '')) {
+            this.setState({
+            searchedbooks: []
+        })}
+
+        else {
+        BooksAPI.search(query).then ((searchedBooks) => {
+            //https://stackoverflow.com/questions/16350604/javascript-how-to-test-if-response-json-array-is-empty
+            if(!searchedBooks.length ) {
+                this.setState({
+                searchedbooks: []
+            })
+            }
+            else {
+                this.setState({searchedBooks})
+            }
+            
+        })
+        
+        }
+        
+        
+    }
+
     render () {
+
         return (
             <div className='app'>
                 <Route exact path='/' render = { () => (
@@ -40,8 +67,14 @@ import { Route } from 'react-router-dom'
                     />
                 )}/>
                 
-                <Route path='/search' component = {SearchBook}/>
-                
+                {/*<Route path='/search' component = {SearchBook}/>*/}
+                <Route path='/search' render = { () => (
+                    <SearchBook   
+                        searchShowBooks = {this.searchShowBooks}
+                        searchedBooks = {this.state.searchedBooks}
+                    />
+                )}
+                />
             </div>
         )
     }
