@@ -22,20 +22,19 @@ class ListBooks extends Component {
 				className = 'search-contact'
 				>	Search Contact
 			</Link>
-		<ol className='booksList'>
-			{this.props.books.map((book)=>
-			
+		<div className='booksList'>
+		<h2 className="bookshelf-title">Read</h2>
+			{this.props.books.filter((book) => book.shelf === 'read').map((book)=>
 			
 			/*https://reactjs.org/docs/forms.html*/
 			<div className="bookshelf" key={book.id}>
-				
-                <h2 className="bookshelf-title">{book.shelf}</h2>
-                  <div className="bookshelf-books" >
-                    <ol className="books-grid">             
+			        
+                    <ul className="books-grid">             
+
 						<li>
 			             	<div className="book">
 			                    <div className="book-top">
-			                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail}  ? {book.imageLinks.smallThumbnail} : '')`  }}></div>
+			                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`  }}></div>
 			                        <div className="book-shelf-changer">
 			                        	<select className= "select-book" value= {book.shelf} onChange={event=>this.props.onUpdateShelf(book,event.target.value)}>
 			                                <option value="move" disabled>Move to...</option>
@@ -50,11 +49,78 @@ class ListBooks extends Component {
 			                    <div className="book-authors">{book.authors}</div>
 			                </div>
 			            </li>
-			        </ol>
-			      </div>
+			        </ul>
+			    
 			</div>
 			)}
-		</ol>
+		</div>
+
+		<div className='booksList'>
+		<h2 className="bookshelf-title">Currently Reading</h2>
+			{this.props.books.filter((book) => book.shelf === 'currentlyReading').map((book)=>
+			
+			/*https://reactjs.org/docs/forms.html*/
+			<div className="bookshelf" key={book.id}>
+			        
+                    <ul className="books-grid">             
+
+						<li>
+			             	<div className="book">
+			                    <div className="book-top">
+			                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`  }}></div>
+			                        <div className="book-shelf-changer">
+			                        	<select className= "select-book" value= {book.shelf} onChange={event=>this.props.onUpdateShelf(book,event.target.value)}>
+			                                <option value="move" disabled>Move to...</option>
+			                                <option value="currentlyReading">Currently Reading</option>
+			                                <option value="wantToRead">Want to Read</option>
+			                                <option value="read">Read</option>
+			                                <option value="none">None</option>
+			                            </select>
+			                        </div>
+			                    </div>
+			                    <div className="book-title">{book.title}</div>
+			                    <div className="book-authors">{book.authors}</div>
+			                </div>
+			            </li>
+			        </ul>
+			    
+			</div>
+			)}
+		</div>
+		
+		<div className='booksList'>
+		<h2 className="bookshelf-title">Want To Read</h2>
+			{this.props.books.filter((book) => book.shelf === 'wantToRead').map((book)=>
+			
+			/*https://reactjs.org/docs/forms.html*/
+			<div className="bookshelf" key={book.id}>
+			        
+                    <ul className="books-grid">             
+
+						<li>
+			             	<div className="book">
+			                    <div className="book-top">
+			                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`  }}></div>
+			                        <div className="book-shelf-changer">
+			                        	<select className= "select-book" value= {book.shelf} onChange={event=>this.props.onUpdateShelf(book,event.target.value)}>
+			                                <option value="move" disabled>Move to...</option>
+			                                <option value="currentlyReading">Currently Reading</option>
+			                                <option value="wantToRead">Want to Read</option>
+			                                <option value="read">Read</option>
+			                                <option value="none">None</option>
+			                            </select>
+			                        </div>
+			                    </div>
+			                    <div className="book-title">{book.title}</div>
+			                    <div className="book-authors">{book.authors}</div>
+			                </div>
+			            </li>
+			        </ul>
+			    
+			</div>
+			)}
+		</div>
+		
 		</div>
 		)}
 }
