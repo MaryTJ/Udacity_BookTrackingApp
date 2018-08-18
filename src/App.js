@@ -28,7 +28,7 @@ import { Route } from 'react-router-dom'
     }
 
     searchShowBooks = (query) => {
-
+        
         if (!query || (query === '')) {
             this.setState({
             searchedbooks: []
@@ -41,13 +41,13 @@ import { Route } from 'react-router-dom'
                 this.setState({
                 searchedbooks: []
             })
-            }
-            else {
-                this.setState({searchedBooks})
-            }
+        }
+        else {
+            this.setState({searchedBooks})
+        }
             
         })
-        
+        console.log(this.state.searchedBooks)
         }
         
         
