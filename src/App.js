@@ -25,6 +25,7 @@ import { Route } from 'react-router-dom'
         BooksAPI.getAll().then((books) => {
             this.setState({books})
         })
+        
     }
 
     searchShowBooks = (query) => {
@@ -71,6 +72,7 @@ import { Route } from 'react-router-dom'
                     <SearchBook   
                         searchShowBooks = {this.searchShowBooks}
                         searchedBooks = {this.state.searchedBooks}
+                        onUpdateShelf = {this.updateShelf}
                     />
                 )}
                 />
