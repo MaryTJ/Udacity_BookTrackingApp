@@ -20,19 +20,20 @@ import { Route } from 'react-router-dom'
     }
 
     updateShelf = (book,shelf) => {
-        
+                
         BooksAPI.update(book,shelf)
         BooksAPI.getAll().then((books) => {
+            //this.setState({books,searchedBooks})
             this.setState({books})
+
         })
-        
     }
 
     searchShowBooks = (query) => {
         
         if (!query || (query === '')) {
             this.setState({
-            searchedbooks: []
+            searchedBooks: []
         })}
 
         else {
@@ -40,17 +41,27 @@ import { Route } from 'react-router-dom'
             //https://stackoverflow.com/questions/16350604/javascript-how-to-test-if-response-json-array-is-empty
             if(!searchedBooks.length ) {
                 this.setState({
-                searchedbooks: []
+                searchedBooks: []
             })
-        }
-        else {
+            }
+            else {
             this.setState({searchedBooks})
-        }
+            }
             
-        })
-        console.log(this.state.searchedBooks)
+            })
+        //console.log(this.state.searchedBooks)
         }
                 
+    }
+
+    getBookShelf = (book) => {
+         
+        BooksAPI.get(book.id).then((book) => {
+                               
+            return book.shelf
+        })
+        
+        
     }
 
     render () {
@@ -73,6 +84,7 @@ import { Route } from 'react-router-dom'
                         searchShowBooks = {this.searchShowBooks}
                         searchedBooks = {this.state.searchedBooks}
                         onUpdateShelf = {this.updateShelf}
+                        getBookShelf = {this.getBookShelf}
                     />
                 )}
                 />

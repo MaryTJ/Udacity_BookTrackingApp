@@ -7,8 +7,9 @@ import sortBy from 'sort-by'
 
 class SearchBook extends Component {
 	static propTypes = {
-		searchedbooks: PropTypes.array,
-		searchShowBooks: PropTypes.func.isRequired
+		searchedBooks: PropTypes.array,
+		searchShowBooks: PropTypes.func.isRequired,
+		onUpdateShelf: PropTypes.func.isRequired
 	}
 
 	state = {
@@ -26,10 +27,17 @@ class SearchBook extends Component {
 
 	}
 
+	getSearchedBookShelf = (book) => {
+		let book_shelf
+		console.log(book.id)
+		book_shelf = this.props.getBookShelf(book)
+		console.log(book.id)
+		console.log(book_shelf)
+		return book_shelf
+	}
 
 	render() {
 
-		
 		return(
 			<div className="search-books">
 			
@@ -59,13 +67,14 @@ class SearchBook extends Component {
             <div className="search-books-results" >
             <ol className='booksList'>
 			{this.props.searchedBooks.map((book)=>
+
               <ol className="books-grid" key={book.id}>
               <li>
 			             	<div className="book" key={book.id}>
 			                    <div className="book-top" key={book.id}>
 			                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: book.imageLinks ? `url(${book.imageLinks.smallThumbnail})` : ''}}></div>
 			                        <div className="book-shelf-changer">
-			                        	<select className= "select-book" value= {book.shelf} onChange={event=>this.props.onUpdateShelf(book,event.target.value)}>
+			                        	<select className= "select-book" value={this.props.getBookShelf(book)} onClick = {event=>this.props.getBookShelf(book)} onChange={event=>this.props.onUpdateShelf(book,event.target.value)}>
 			                                <option value="move" disabled>Move to...</option>
 			                                <option value="currentlyReading">Currently Reading</option>
 			                                <option value="wantToRead">Want to Read</option>
@@ -76,6 +85,7 @@ class SearchBook extends Component {
 			                    </div>
 			                    <div className="book-title">{book.title}</div>
 			                    <div className="book-authors">{book.authors}</div>
+			                    
 			                </div>
 			            </li>
 				
