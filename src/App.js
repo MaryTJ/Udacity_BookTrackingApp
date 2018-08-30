@@ -55,13 +55,18 @@ import { Route } from 'react-router-dom'
     }
 
     getBookShelf = (book) => {
-         
-        BooksAPI.get(book.id).then((book) => {
-                               
-            return book.shelf
+        let checkBook = this.state.books
+
+        let shelf
+        checkBook.forEach ((b) => {
+                
+            if (book.id === b.id) {
+                
+                shelf = b.shelf
+            }
         })
-        
-        
+        console.log(shelf)
+        return shelf 
     }
 
     render () {
