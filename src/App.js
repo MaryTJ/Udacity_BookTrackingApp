@@ -9,8 +9,7 @@ import { Route } from 'react-router-dom'
   class BooksApp extends React.Component {
     state= {
         books : [],
-        searchedBooks : []
-        //screen : 'list' //list,search
+        searchedBooks : [],
     }
 
     componentDidMount() {
@@ -20,25 +19,26 @@ import { Route } from 'react-router-dom'
     }
 
     updateShelf = (book,shelf) => {
-                
         BooksAPI.update(book,shelf)
         BooksAPI.getAll().then((books) => {
-            //this.setState({books,searchedBooks})
             this.setState({books})
+        })
+    }
 
+    setSearchBook = () => {
+        this.setState({
+            searchedBooks: []
         })
     }
 
     searchShowBooks = (query) => {
-        
         if (!query || (query === '')) {
             this.setState({
             searchedBooks: []
         })}
-
         else {
         BooksAPI.search(query).then ((searchedBooks) => {
-            //https://stackoverflow.com/questions/16350604/javascript-how-to-test-if-response-json-array-is-empty
+            //Help taken from https://stackoverflow.com/questions/16350604/javascript-how-to-test-if-response-json-array-is-empty
             if(!searchedBooks.length ) {
                 this.setState({
                 searchedBooks: []
@@ -49,23 +49,17 @@ import { Route } from 'react-router-dom'
             }
             
             })
-        //console.log(this.state.searchedBooks)
         }
-                
     }
 
     getBookShelf = (book) => {
         let checkBook = this.state.books
-
         let shelf
         checkBook.forEach ((b) => {
-                
             if (book.id === b.id) {
-                
                 shelf = b.shelf
             }
         })
-        console.log(shelf)
         return shelf 
     }
 
@@ -77,19 +71,16 @@ import { Route } from 'react-router-dom'
                     <ListBooks 
                         onUpdateShelf = {this.updateShelf}
                         books = {this.state.books}
-                        /*onNavigate = {() => {
-                            this.setState({screen: 'search'})
-                        }}*/
                     />
                 )}/>
-                
-                {/*<Route path='/search' component = {SearchBook}/>*/}
+                               
                 <Route path='/search' render = { () => (
                     <SearchBook   
                         searchShowBooks = {this.searchShowBooks}
                         searchedBooks = {this.state.searchedBooks}
                         onUpdateShelf = {this.updateShelf}
                         getBookShelf = {this.getBookShelf}
+                        setSearchBook = {this.setSearchBook}
                     />
                 )}
                 />

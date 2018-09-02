@@ -26,11 +26,9 @@ class ListBooks extends Component {
 		<h2 className="bookshelf-title">Read</h2>
 			{this.props.books.filter((book) => book.shelf === 'read').map((book)=>
 			
-			/*https://reactjs.org/docs/forms.html*/
+			/* Help taken from https://reactjs.org/docs/forms.html*/
 			<div className="bookshelf" key={book.id}>
-			        
-                    <ul className="books-grid">             
-
+			    <ul className="books-grid">             
 						<li>
 			             	<div className="book">
 			                    <div className="book-top">
@@ -50,7 +48,6 @@ class ListBooks extends Component {
 			                </div>
 			            </li>
 			        </ul>
-			    
 			</div>
 			)}
 		</div>
@@ -59,11 +56,8 @@ class ListBooks extends Component {
 		<h2 className="bookshelf-title">Currently Reading</h2>
 			{this.props.books.filter((book) => book.shelf === 'currentlyReading').map((book)=>
 			
-			/*https://reactjs.org/docs/forms.html*/
 			<div className="bookshelf" key={book.id}>
-			        
-                    <ul className="books-grid">             
-
+					<ul className="books-grid">             
 						<li>
 			             	<div className="book">
 			                    <div className="book-top">
@@ -83,7 +77,6 @@ class ListBooks extends Component {
 			                </div>
 			            </li>
 			        </ul>
-			    
 			</div>
 			)}
 		</div>
@@ -94,9 +87,7 @@ class ListBooks extends Component {
 			
 			/*https://reactjs.org/docs/forms.html*/
 			<div className="bookshelf" key={book.id}>
-			        
                     <ul className="books-grid">             
-
 						<li>
 			             	<div className="book">
 			                    <div className="book-top">
@@ -116,15 +107,11 @@ class ListBooks extends Component {
 			                </div>
 			            </li>
 			        </ul>
-			    
 			</div>
 			)}
 		</div>
-		
 		</div>
 		)}
 }
-
-
 
 export default ListBooks
