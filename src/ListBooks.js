@@ -20,7 +20,7 @@ class ListBooks extends Component {
             <Link
 				to='/search'
 				className = 'search-contact'
-				>	Search Contact
+				>	Search Book
 			</Link>
 		<div className='booksList'>
 		<h2 className="bookshelf-title">Read</h2>
