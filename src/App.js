@@ -18,6 +18,7 @@ import { Route } from 'react-router-dom'
         })
     }
 
+    //Function to update shelf when shelf of a book is changed
     updateShelf = (book,shelf) => {
         BooksAPI.update(book,shelf)
         BooksAPI.getAll().then((books) => {
@@ -25,12 +26,14 @@ import { Route } from 'react-router-dom'
         })
     }
 
+    //Function to set searchedBooks array to null 
     setSearchBook = () => {
         this.setState({
             searchedBooks: []
         })
     }
 
+    //Function to search books and store them in searchedBooks array 
     searchShowBooks = (query) => {
         if (!query || (query === '')) {
             this.setState({
@@ -52,6 +55,7 @@ import { Route } from 'react-router-dom'
         }
     }
 
+    //function to get book shelf for displaying on search page
     getBookShelf = (book) => {
         let checkBook = this.state.books
         let shelf

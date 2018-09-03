@@ -16,6 +16,7 @@ class SearchBook extends Component {
 		query: ''
 	}
 
+	//Function to search items when query is typed
 	updateQuery = (query) => {
 		this.setState({ query:query })//.trim() })
 		if (this.state.query){
