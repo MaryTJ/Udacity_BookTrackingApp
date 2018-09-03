@@ -59,7 +59,7 @@ class SearchBook extends Component {
 			                <div className="book-top" key={book.id}>
 			                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: book.imageLinks ? `url(${book.imageLinks.smallThumbnail})` : ''}}></div>
 			                    <div className="book-shelf-changer">
-			                       	<select className= "select-book" value={this.props.getBookShelf(book)} onChange={event=>this.props.onUpdateShelf(book,event.target.value)}>
+			                       	<select className= "select-book" value={this.props.getBookShelf(book) ? this.props.getBookShelf(book) : 'none'} onChange={event=>this.props.onUpdateShelf(book,event.target.value)}>
 			                            <option value="move" disabled>Move to...</option>
 			                            <option value="currentlyReading">Currently Reading</option>
 			                            <option value="wantToRead">Want to Read</option>
