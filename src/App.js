@@ -21,13 +21,7 @@ import SearchBook from './SearchBook.js'
 
     //Function to update shelf when shelf of a book is changed
     updateShelf = (book,shelf) => {
-        /*
-        BooksAPI.update(book,shelf)
-        BooksAPI.getAll().then((books) => {
-            this.setState({books})
-        })
-        */
-
+        
         BooksAPI.update(book, shelf).then(() => {
         book.shelf = shelf        
         this.setState(state => ({
