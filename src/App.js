@@ -1,9 +1,10 @@
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
 import './App.css'
+import { Route } from 'react-router-dom'
+import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks.js'
 import SearchBook from './SearchBook.js'
-import { Route } from 'react-router-dom'
+
 
   
   class BooksApp extends React.Component {
@@ -20,10 +21,20 @@ import { Route } from 'react-router-dom'
 
     //Function to update shelf when shelf of a book is changed
     updateShelf = (book,shelf) => {
+        /*
         BooksAPI.update(book,shelf)
         BooksAPI.getAll().then((books) => {
             this.setState({books})
         })
+        */
+
+        BooksAPI.update(book, shelf).then(() => {
+        book.shelf = shelf        
+        this.setState(state => ({
+            books: state.books.filter(b => b.id !== book.id).concat(book)
+        }))     
+        })
+
     }
 
     //Function to set searchedBooks array to null 
