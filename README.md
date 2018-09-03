@@ -15,9 +15,7 @@ This project shows books and their corresponding shelves. The shelves are:
     -Want to Read
 The user can change shelf of the book and also search for other books to include in shelf. 
 
-## TL;DR
-
-To get started developing right away:
+## How to access webpage
 
 * From inside the project directory, 
 1. Run command ```npm install``` to install dependencies
